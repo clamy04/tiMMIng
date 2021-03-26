@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TiMMIng - Backoffice{% endblock %}
+
+{% block body %}
+<h1> Bienvenue dans le backoffice </h1>
+<div> 
+<a href="{{ path('backoffice_tasks')}}">Consulter les tâches</a> <br/>
+<a href="{{ path('backoffice')}}">Consulter la liste des professeurs</a> <br/>
+<a href="{{ path('backoffice')}}">Consulter la liste des modules</a>
+
+
+</div>
+{% endblock %}

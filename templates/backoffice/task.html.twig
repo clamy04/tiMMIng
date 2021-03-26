@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TiMMIng - tâches{% endblock %}
+
+{% block body %}
+<h1> Liste des tâches </h1>
+<div>
+<a href="{{ path('add_task')}}">Ajouter une tâche</a>
+<table>
+    <thead>
+     <tr>
+            <th> Date de rendu </th>
+            <th> Module </th>
+            <th> Professeur </th>
+            <th> Description </th>
+    </tr>
+    </thead>
+    <tbody> 
+  
+{% for task in tasks %} 
+<tr>
+<td>{{task.deadline |date("d/m/Y")}}</td>
+  
+<td>{{task.module.name}}</td>
+
+<td>{{task.teacher.name}}</td>
+
+<td>{{task.description}}</td>
+<td><a href="{{ path('edit_task', { id: task.id })}}">Editer</a></td>
+<td> <form action="{{ path( 'delete_task', { id: task.id }) }}" method="post" class="d-inline">
+                        <input type="hidden" name="_method" value="delete">
+                        <button class="btn btn-link text-danger" type="submit">effacer</button>
+                    </form></td>
+
+  </tr>
+  
+{% endfor %}
+   
+    </tbody>
+</table>
+</div>
+{% endblock %}
