@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TiMMIng, l'agenda MMI{% endblock %}
+
+{% block body %}
+<a href="{{ path('backoffice')}}" >Connexion</a>
+<h1>Bienvenue sur l'agenda MMI !</h1>
+
+<div>
+<table>
+    <thead>
+     <tr>
+            <th> Date de rendu </th>
+            <th> Module </th>
+            <th> Professeur </th>
+            <th> Description </th>
+    </tr>
+    </thead>
+    <tbody> 
+  
+{% for task in tasks %} 
+<tr>
+<td>{{task.deadline |date("d/m/Y")}}</td>
+  
+<td>{{task.module.name}}</td>
+
+<td>{{task.teacher.name}}</td>
+
+<td>{{task.description}}</td>
+  </tr>
+{% endfor %}
+   
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

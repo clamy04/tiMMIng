@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %} {% block title %}Liste des modules{% endblock
+%} {% block body %}
+
+<h1>Les modules</h1>
+<p><a href="{{ path('module_add') }}">Ajouter un module</a></p>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Professeurs</th>
+                <th scope="col">Supprimer</th>
+                <th scope="col"> Modification</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for module in modules %}
+            <tr>
+                <th scope="row">
+                    {{ module.name }}
+                </th>
+                <th scope="row">{% for teacher in teachers %}
+                    {% if teacher.module_id == module.id %}
+                    {{ teacher.teacher_name }}
+                    {%endif%}
+                    {% endfor %}
+                </th>
+                <td>
+                    <form action="{{ path('module_delete' ,{id:module.id})}}" method="POST" class="d-inline">
+                        <input type="hidden" name="_method" value="delete">
+                        <button class="btn" type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une tâche{% endblock %}
+
+{% block body %}
+    <h1>Editer une tâche</h1>
+
+    {{ include('backoffice/task_add.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('backoffice_tasks') }}">back to list</a>
+
+
+{% endblock %}

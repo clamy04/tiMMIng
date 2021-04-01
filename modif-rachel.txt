@@ -1,0 +1,2 @@
+Note sur les changements : 
+- Dans le Teacher.php j'ai ajouté cascade={"persist", "remove"}) pour le paramètre $task car sinon suppression impossible. 

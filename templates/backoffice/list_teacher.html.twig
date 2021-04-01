@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %} {% block title %}Liste des professeurs{% endblock
+%} {% block body %}
+
+<h1>Les professeurs</h1>
+<p><a href="{{ path('teacher_add') }}">Ajouter un prof</a></p>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Modules</th>
+                <th scope="col">Suppression</th>
+                <th scope="col"> Modification</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+            <tr>
+                <th scope="row">
+                    <a href="{{ path('teacher_show' ,{id:teacher.id})}}">
+                        {{ teacher.name }}</a>
+                </th>
+                <th scope="row">{% for module in modules %}
+                    {% if module.teacher_id == teacher.id %}
+                    {{ module.module_name }}
+                    {% endif %}
+                    {% endfor %}</th>
+                <td>
+                    <form action="{{ path('teacher_delete' ,{id:teacher.id})}}" method="POST" class="d-inline">
+                        <input type="hidden" name="_method" value="delete">
+                        <button class="btn" type="submit">Supprimer</button>
+                    </form>
+                </td>
+                <td>
+                <td><a href="{{ path('teacher_edit', { id: teacher.id })}}">Editer</a></td>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

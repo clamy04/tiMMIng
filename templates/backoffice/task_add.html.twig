@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TiMMIng - Ajouter une tâche {% endblock %}
+
+{% block body %}
+
+<div>
+
+{# {{ form(form) }} #}
+{{ form_start(form) }}
+{{ form_errors(form) }}
+{{ form_widget(form) }}
+<button>Enregistrer la tâche</button>
+{{ form_end(form) }}
+</div>
+
+{% endblock %}

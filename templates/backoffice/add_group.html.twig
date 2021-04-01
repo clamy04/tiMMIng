@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TiMMIng - Ajouter un groupe {% endblock %}
+
+{% block body %}
+
+<div>
+
+{# {{ form(form) }} #}
+{{ form_start(form) }}
+{{ form_errors(form) }}
+{{ form_widget(form) }}
+<button>Enregistrer le nouveau groupe</button>
+{{ form_end(form) }}
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un prof{% endblock %}
+
+{% block body %}
+<h1>Modifier un prof</h1>
+
+
+{{form(form)}}
+<a href="{{ path('teachers') }}">back to list</a>
+
+
+{% endblock %}

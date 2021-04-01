@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un groupe{% endblock %}
+
+{% block body %}
+    <h1>Editer un groupe </h1>
+
+    {{ include('backoffice/add_group.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('group') }}">Retour</a>
+
+
+{% endblock %}

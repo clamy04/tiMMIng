@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %} {% block title %}TiMMIng - professeur{% endblock %}
+{% block body %}
+
+<div class="container">
+    <h1 class="bg-primary text-white p-4">
+        <i class="las la-angle-double-right"></i>
+        Détail du prof {{ teacher.name }}
+    </h1>
+    <h2>Les modules enseignés : </h2>
+    {% for module in modules %}
+    <p>{{ module.module_name }} </p>
+    {% endfor %}
+    <h2>Les tâches assignées : </h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Tâche</th>
+                <th scope="col">Module</th>
+                <th scope="col">Deadline</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            {%if task.visible==true%}
+            <td>{{task.tache}}</td>
+            <td>{{task.module}}</td>
+            <td>{{task.deadline|date("m/d/Y")}}</td>
+            {%endif%}
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('teachers')}}">Retour à la liste des profs</a>
+
+</div>
+
+
+
+{% endblock %}

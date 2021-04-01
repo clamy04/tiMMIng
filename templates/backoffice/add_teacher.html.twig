@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %} {% block title %}TiMMIng - ajout d'un prof{% endblock %}
+{% block body %}
+
+<div class="container">
+    <h1 class="bg-primary text-white p-4">
+        <i class="las la-angle-double-right"></i>
+        Ajouter un nouveau professeur
+    </h1>
+    <form action="{{ path('teacher_add_save')}}" method="POST" class="w-50" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="formGroupExampleInput">Nom :</label>
+            <input name="name" type="text" class="form-control">
+        </div>
+        <p>ajout du choix pour l'année</p>
+        <p>ajout du choix pour la campagne</p>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Modules :</label>
+            <div class="col-8">
+                <select name="module[]" class="custom-select" multiple>
+                    {% for module in modules %}
+                    <option value="{{ module.id }}">{{ module.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary mt-4">Enregistrer ce nouveau module</button>
+    </form>
+
+
+
+</div>
+</div>
+
+</div>
+
+
+{% endblock %}
