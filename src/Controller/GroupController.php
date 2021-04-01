@@ -60,6 +60,8 @@ class GroupController extends AbstractController
      */
     public function delete(Group $group, EntityManagerInterface $em)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $em->remove($group);
         $em->flush();
         return $this->redirectToRoute('group');
@@ -71,6 +73,8 @@ class GroupController extends AbstractController
      */
     public function edit(Request $request, Group $group): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(GroupType::class, $group);
         $form->handleRequest($request);
 

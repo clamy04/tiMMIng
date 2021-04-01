@@ -39,7 +39,7 @@ class TeacherController extends AbstractController
      */
     public function addTeacher(ModuleRepository $moduleRepository)
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('backoffice/add_teacher.html.twig', [
             'modules' => $moduleRepository->findAll(),
         ]);
@@ -50,6 +50,8 @@ class TeacherController extends AbstractController
      */
     public function save(TeacherRepository $teacherRepository, EntityManagerInterface $em, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $teacher = new Teacher();
         $teacher->setName($request->request->get('name'));
         foreach ($_POST["module"] as $id_module) {
@@ -68,6 +70,8 @@ class TeacherController extends AbstractController
      */
     public function delete(Teacher $teacher, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         dump($teacher);
         $em->remove($teacher);
         $em->flush();
@@ -78,6 +82,8 @@ class TeacherController extends AbstractController
      */
     public function edit(Request $request, Teacher $teacher, ModuleRepository $moduleRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(TeacherType::class, $teacher);
         $form->handleRequest($request);
 

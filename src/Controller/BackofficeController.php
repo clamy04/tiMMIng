@@ -40,6 +40,7 @@ class BackofficeController extends AbstractController
      */
     public function add_task(Request $request, EntityManagerInterface $em): Response
     {
+        
         $this->denyAccessUnlessGranted('ROLE_ADMIN', 'ROLE_EDITOR');
          
             $task = new Task();
@@ -71,6 +72,8 @@ class BackofficeController extends AbstractController
      */
     public function delete(Task $task, EntityManagerInterface $em)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', 'ROLE_EDITOR');
+
         $em->remove($task);
         $em->flush();
         return $this->redirectToRoute('backoffice_tasks');
@@ -82,6 +85,8 @@ class BackofficeController extends AbstractController
      */
     public function edit(Request $request, Task $task): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', 'ROLE_EDITOR');
+
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 

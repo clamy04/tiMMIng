@@ -39,6 +39,7 @@ class ModuleController extends AbstractController
      */
     public function addModule(TeacherRepository $teacherRepository)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->render('backoffice/add_module.html.twig', [
             'teachers' => $teacherRepository->findAll(),
@@ -50,6 +51,8 @@ class ModuleController extends AbstractController
      */
     public function save(ModuleRepository $moduleRepository, EntityManagerInterface $em, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $module = new Module();
         $module->setName($request->request->get('name'));
         foreach ($_POST["teacher"] as $id_teacher) {
@@ -68,6 +71,8 @@ class ModuleController extends AbstractController
      */
     public function delete(Module $module, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         dump($module);
         $em->remove($module);
         $teachers = $module->getTeachers();
